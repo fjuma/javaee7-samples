@@ -39,9 +39,13 @@
  */
 package org.javaee7.servlet.event.listeners;
 
+import javax.inject.Inject;
 import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpSessionAttributeListener;
 import javax.servlet.http.HttpSessionBindingEvent;
+
+import org.javaee7.testbeans.RequestScopedBean;
+import org.javaee7.testbeans.TestInterceptor;
 
 /**
  * Web application lifecycle listener.
@@ -50,19 +54,20 @@ import javax.servlet.http.HttpSessionBindingEvent;
  */
 @WebListener
 public class MyHttpSessionAttributeListener implements HttpSessionAttributeListener {
+	
+	@Inject
+	RequestScopedBean bean;
 
-    @Override
+    @TestInterceptor
     public void attributeAdded(HttpSessionBindingEvent event) {
-        System.out.println("MyHttpSessionAttributeListener.attributeAdded: " + event.getName());
+    	if (event.getValue() instanceof String) {
+			bean.addInjection(this.getClass().getSimpleName());
+		}
     }
 
-    @Override
     public void attributeRemoved(HttpSessionBindingEvent event) {
-        System.out.println("MyHttpSessionAttributeListener.attributeRemoved: " + event.getName());
     }
 
-    @Override
     public void attributeReplaced(HttpSessionBindingEvent event) {
-        System.out.println("MyHttpSessionAttributeListener.attributeReplaced: " + event.getName());
     }
 }

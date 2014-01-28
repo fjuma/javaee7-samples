@@ -39,9 +39,13 @@
  */
 package org.javaee7.servlet.event.listeners;
 
+import javax.inject.Inject;
 import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
+
+import org.javaee7.testbeans.ApplicationScopedBean;
+import org.javaee7.testbeans.TestInterceptor;
 
 /**
  * Web application lifecycle listener.
@@ -50,14 +54,15 @@ import javax.servlet.http.HttpSessionListener;
  */
 @WebListener
 public class MySessionListener implements HttpSessionListener {
+	
+	@Inject
+	ApplicationScopedBean bean;
 
-    @Override
-    public void sessionCreated(HttpSessionEvent se) {
-        System.out.println("MySessionListener.sessionCreated: " + se.getSession().getId());
+	@TestInterceptor
+	public void sessionCreated(HttpSessionEvent se) {
+    	bean.addInjection(this.getClass().getSimpleName());
     }
 
-    @Override
     public void sessionDestroyed(HttpSessionEvent se) {
-        System.out.println("MySessionListener.sessionDestroyed: " + se.getSession().getId());
     }
 }

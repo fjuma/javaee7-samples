@@ -39,25 +39,31 @@
  */
 package org.javaee7.servlet.event.listeners;
 
+import javax.inject.Inject;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
+import org.javaee7.testbeans.ApplicationScopedBean;
+import org.javaee7.testbeans.TestInterceptor;
+
 /**
  * Web application lifecycle listener.
- *
+ * 
  * @author Arun Gupta
  */
 @WebListener
 public class MyContextListener implements ServletContextListener {
 
-    @Override
-    public void contextInitialized(ServletContextEvent sce) {
-        System.out.println("MyContextListener.contextInitialized: " + sce.getServletContext().getContextPath());
-    }
+	@Inject
+	ApplicationScopedBean bean;
 
-    @Override
-    public void contextDestroyed(ServletContextEvent sce) {
-        System.out.println("MyContextListener.contextDestroyed: " + sce.getServletContext().getContextPath());
-    }
+	@TestInterceptor
+	public void contextInitialized(ServletContextEvent sce) {
+		bean.addInjection(this.getClass().getSimpleName());
+	}
+
+	@Override
+	public void contextDestroyed(ServletContextEvent sce) {
+	}
 }

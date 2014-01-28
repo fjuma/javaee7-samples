@@ -52,7 +52,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.javaee7.servlet.async.testbeans.TestBean;
+import org.javaee7.testbeans.ApplicationScopedBean;
+import org.javaee7.testbeans.RequestScopedBean;
+
+
 
 /**
  * @author Arun Gupta
@@ -64,7 +67,10 @@ public class MyAsyncServlet extends HttpServlet {
 	ManagedExecutorService executor;
 
 	@Inject
-	TestBean bean;
+	RequestScopedBean bean;
+	
+	@Inject
+	ApplicationScopedBean bean2;
 	
 	/**
 	 * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

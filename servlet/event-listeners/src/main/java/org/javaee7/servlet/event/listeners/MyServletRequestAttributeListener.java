@@ -39,31 +39,37 @@
  */
 package org.javaee7.servlet.event.listeners;
 
+import javax.inject.Inject;
 import javax.servlet.ServletRequestAttributeEvent;
 import javax.servlet.ServletRequestAttributeListener;
 import javax.servlet.annotation.WebListener;
 
+import org.javaee7.testbeans.ApplicationScopedBean;
+import org.javaee7.testbeans.TestInterceptor;
+
 /**
  * Web application lifecycle listener.
- *
+ * 
  * @author Arun Gupta
  */
 @WebListener
-public class MyServletRequestAttributeListener implements ServletRequestAttributeListener {
+public class MyServletRequestAttributeListener implements
+		ServletRequestAttributeListener {
 
-    @Override
-    public void attributeAdded(ServletRequestAttributeEvent srae) {
-        System.out.println("MyServletRequestAttributeListener.attributeAdded: " +srae.getName());
-    }
+	@Inject
+	public ApplicationScopedBean bean;
 
-    @Override
-    public void attributeRemoved(ServletRequestAttributeEvent srae) {
-        System.out.println("MyServletRequestAttributeListener.attributeRemoved: " +srae.getName());
-    }
+	@TestInterceptor
+	public void attributeAdded(ServletRequestAttributeEvent event) {
+		if (event.getValue() instanceof String) {
+			bean.addInjection(this.getClass().getSimpleName());
+		}
+	}
 
-    @Override
-    public void attributeReplaced(ServletRequestAttributeEvent srae) {
-        System.out.println("MyServletRequestAttributeListener.attributeReplaced: " +srae.getName());
-    }
+	public void attributeRemoved(ServletRequestAttributeEvent srae) {
+	}
+
+	public void attributeReplaced(ServletRequestAttributeEvent srae) {
+	}
 
 }

@@ -5,11 +5,10 @@ import static org.junit.Assert.assertTrue;
 import java.io.File;
 import java.net.URL;
 
-import javax.inject.Inject;
-
+import org.javaee7.servlet.async.MyAsyncListener;
 import org.javaee7.servlet.async.MyAsyncServlet;
-import org.javaee7.servlet.async.testbeans.MyInterceptor;
-import org.javaee7.servlet.async.testbeans.TestBean;
+import org.javaee7.testbeans.MyInterceptor;
+import org.javaee7.testbeans.RequestScopedBean;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
@@ -29,9 +28,6 @@ public class AsyncServletCdiTest {
 
 	private static final String WEBINF = "src/main/webapp/WEB-INF";
 
-	@Inject
-	TestBean bean;
-
 	@ArquillianResource
 	URL url;
 
@@ -41,8 +37,8 @@ public class AsyncServletCdiTest {
 		return ShrinkWrap
 				.create(WebArchive.class, "test.war")
 				.addPackage(MyAsyncServlet.class.getPackage())
-				.addPackage(TestBean.class.getPackage())
-				.addAsWebResource("index.jsp","index.jsp")
+				.addPackage(RequestScopedBean.class.getPackage())
+				.addAsWebResource(new File("src/main/webapp","index.jsp"))
 				.addAsWebInfResource(
 						(new File(WEBINF, "web.xml")))
 				.addAsWebInfResource(new File(WEBINF, "beans.xml"));

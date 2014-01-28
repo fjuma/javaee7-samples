@@ -50,6 +50,6 @@
     </head>
     <body>
         <h1>Servlet : Filters</h1>
-        Invoke the <a href="${pageContext.request.contextPath}/MyAsyncServlet"/>Async Servlet</a>.
+        Invoke the <a id="link" href="${pageContext.request.contextPath}/MyAsyncServlet"/>Async Servlet</a>.
     </body>
 </html>

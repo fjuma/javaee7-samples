@@ -39,30 +39,37 @@
  */
 package org.javaee7.servlet.event.listeners;
 
+import javax.inject.Inject;
 import javax.servlet.ServletContextAttributeEvent;
 import javax.servlet.ServletContextAttributeListener;
 import javax.servlet.annotation.WebListener;
 
+import org.javaee7.testbeans.ApplicationScopedBean;
+import org.javaee7.testbeans.TestInterceptor;
+
 /**
  * Web application lifecycle listener.
- *
+ * 
  * @author Arun Gupta
  */
 @WebListener
-public class MyContextAttributeListener implements ServletContextAttributeListener {
+public class MyContextAttributeListener implements
+		ServletContextAttributeListener {
 
-    @Override
-    public void attributeAdded(ServletContextAttributeEvent event) {
-        System.out.println("MyContextAttributeListener.attributeAdded: " + event.getName());
-    }
+	@Inject
+	ApplicationScopedBean bean;
 
-    @Override
-    public void attributeRemoved(ServletContextAttributeEvent event) {
-        System.out.println("MyContextAttributeListener.attributeRemoved: " + event.getName());
-    }
+	@TestInterceptor
+	public void attributeAdded(ServletContextAttributeEvent event) {
+		// don't want to have multiple classes
+		if (event.getValue() instanceof String) {
+			bean.addInjection(this.getClass().getSimpleName());
+		}
+	}
 
-    @Override
-    public void attributeReplaced(ServletContextAttributeEvent event) {
-        System.out.println("MyContextAttributeListener.attributeReplaced: " + event.getName());
-    }
+	public void attributeRemoved(ServletContextAttributeEvent event) {
+	}
+
+	public void attributeReplaced(ServletContextAttributeEvent event) {
+	}
 }

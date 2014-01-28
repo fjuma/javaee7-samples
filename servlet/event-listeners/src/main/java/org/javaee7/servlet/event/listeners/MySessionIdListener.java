@@ -39,21 +39,28 @@
  */
 package org.javaee7.servlet.event.listeners;
 
+import javax.inject.Inject;
 import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionIdListener;
 
+import org.javaee7.testbeans.RequestScopedBean;
+import org.javaee7.testbeans.TestInterceptor;
+
 /**
  * Web application lifecycle listener.
- *
+ * 
  * @author Arun Gupta
  */
 @WebListener
 public class MySessionIdListener implements HttpSessionIdListener {
 
-    @Override
-    public void sessionIdChanged(HttpSessionEvent event, String oldSessionId) {
-        System.out.println("MySessionIdListener.sessionIdChanged: new=" + event.getSession().getId() + ", old=" + oldSessionId);
-    }
+	@Inject
+	RequestScopedBean bean;
+
+	@TestInterceptor
+	public void sessionIdChanged(HttpSessionEvent event, String oldSessionId) {
+		bean.addInjection(this.getClass().getSimpleName());
+	}
 
 }

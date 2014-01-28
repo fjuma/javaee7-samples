@@ -39,8 +39,12 @@
  */
 package org.javaee7.servlet.event.listeners;
 
+
+import javax.inject.Inject;
 import javax.servlet.http.HttpSessionActivationListener;
 import javax.servlet.http.HttpSessionEvent;
+
+import org.javaee7.testbeans.ApplicationScopedBean;
 
 /**
  * Web application lifecycle listener.
@@ -48,15 +52,16 @@ import javax.servlet.http.HttpSessionEvent;
  * @author Arun Gupta
  */
 public class MyHttpSessionActivationListener implements HttpSessionActivationListener {
+	
+	@Inject
+	ApplicationScopedBean bean;
 
-    @Override
     public void sessionWillPassivate(HttpSessionEvent se) {
-        System.out.println("MyHttpSessionActivationListener.sessionWillPassivate: " + se.getSession().getId());
+    	bean.addInjection(this.getClass().getSimpleName());
     }
 
-    @Override
     public void sessionDidActivate(HttpSessionEvent se) {
-        System.out.println("MyHttpSessionActivationListener.sessionDidActivate: " + se.getSession().getId());
+    	bean.addInjection(this.getClass().getSimpleName());
     }
 
 }

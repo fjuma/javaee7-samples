@@ -39,24 +39,36 @@
  */
 package org.javaee7.servlet.event.listeners;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpSessionBindingEvent;
 import javax.servlet.http.HttpSessionBindingListener;
+
+import org.javaee7.testbeans.RequestScopedBean;
+import org.javaee7.testbeans.TestInterceptor;
 
 /**
  * Web application lifecycle listener.
  *
  * @author Arun Gupta
  */
+
 public class MyHttpSessionBindingListener implements HttpSessionBindingListener {
 
-    @Override
+	@Inject
+	RequestScopedBean bean;
+	
+	public MyHttpSessionBindingListener(){
+		
+	}
+
+	@TestInterceptor
     public void valueBound(HttpSessionBindingEvent event) {
-        System.out.println("MyHttpSessionBindingListener.valueBound: " + event.getName());
+    	bean.addInjection(this.getClass().getSimpleName());
     }
 
     @Override
     public void valueUnbound(HttpSessionBindingEvent event) {
-        System.out.println("MyHttpSessionBindingListener.valueUnbound: " + event.getName());
+    
     }
 
 }

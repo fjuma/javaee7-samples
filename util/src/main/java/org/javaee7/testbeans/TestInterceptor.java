@@ -1,4 +1,4 @@
-package org.javaee7.servlet.async.testbeans;
+package org.javaee7.testbeans;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Inherited;
