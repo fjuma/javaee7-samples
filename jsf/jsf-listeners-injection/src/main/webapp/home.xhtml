@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<head>
+<title>Injection</title>
+</head>
+<body>
+
+	<h:form id="form">
+		<h:commandButton  id="link" action="#{backingBean.simpleAction()}" value="Action" actionListener="#{actionListenerBean.processAction}" />
+		<h:commandButton  id="link2" value="Action2" >
+			<f:actionListener type="org.jboss.jsf.listeners.MyActionListener"/>
+		</h:commandButton>
+		<h:commandButton  id="link3" value="Action3"/>
+	</h:form>
+	
+</body>
+</html>
