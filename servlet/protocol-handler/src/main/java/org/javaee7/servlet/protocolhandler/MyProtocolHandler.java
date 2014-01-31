@@ -40,29 +40,38 @@
 package org.javaee7.servlet.protocolhandler;
 
 import java.io.IOException;
-import javax.servlet.ServletInputStream;
-import javax.servlet.ServletOutputStream;
+
+import javax.inject.Inject;
 import javax.servlet.http.HttpUpgradeHandler;
 import javax.servlet.http.WebConnection;
+
+import org.javaee7.testbeans.ApplicationScopedBean;
+import org.javaee7.testbeans.TestInterceptor;
 
 /**
  * @author Arun Gupta
  */
 public class MyProtocolHandler implements HttpUpgradeHandler {
 
-//    public MyProtocolHandler(ServletInputStream in, ServletOutputStream out) {
-//    }
+	@Inject
+	ApplicationScopedBean bean;
 
-    @Override
-    public void init(WebConnection wc) {
-        try (ServletInputStream input = wc.getInputStream();
-            ServletOutputStream output = wc.getOutputStream();) {
-        } catch (IOException ex) {
-        }
-    }
+	@TestInterceptor
+	public void init(WebConnection wc) {
 
-    @Override
-    public void destroy() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+		try {
+			wc.getOutputStream().print(bean.getMessage()+"\n");
+			wc.getOutputStream().print(bean.getInterceptors().get(0));
+			wc.getOutputStream().flush();
+			wc.getOutputStream().close();
+			wc.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void destroy() {
+	}
 }

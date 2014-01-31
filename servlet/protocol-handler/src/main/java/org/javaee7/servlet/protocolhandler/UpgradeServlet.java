@@ -41,17 +41,24 @@ package org.javaee7.servlet.protocolhandler;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.javaee7.testbeans.ApplicationScopedBean;
+
 /**
  * @author Arun Gupta
  */
 @WebServlet(urlPatterns = {"/UpgradeServlet"})
 public class UpgradeServlet extends HttpServlet {
+	
+	@Inject
+	ApplicationScopedBean bean;
 
     /**
      * Processes requests for both HTTP
@@ -73,13 +80,9 @@ public class UpgradeServlet extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet UpgradeServlet at " + request.getContextPath() + "</h1>");
-            if (request.getHeader("Upgrade").equals("echo")) {
-                response.setStatus(HttpServletResponse.SC_SWITCHING_PROTOCOLS);
-                response.setHeader("Connection", "Upgrade");
-                response.setHeader("Upgrade", "echo");
-                request.upgrade(MyProtocolHandler.class);
-                System.out.println("Request upgraded to MyProtocolHandler");
-            }
+            request.upgrade(MyProtocolHandler.class);
+            out.println(bean.getInjections());
+            out.println(bean.getInterceptors());
             out.println("</body>");
             out.println("</html>");
         }

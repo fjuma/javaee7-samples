@@ -50,7 +50,7 @@
     </head>
     <body>
         <h1>Protocol Handler using Servlet 3.1</h1>
-        Invoke <a href="${pageContext.request.contextPath}/UpgradeServlet">protocol upgrade</a><br/>
+        Invoke <a id="link" href="${pageContext.request.contextPath}/UpgradeServlet">protocol upgrade</a><br/>
         
         <!-- What is the correct way to initiate the request -->
     </body>
