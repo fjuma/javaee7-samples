@@ -43,12 +43,9 @@ import java.io.Serializable;
 
 import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.spi.BeanManager;
-import javax.enterprise.inject.spi.CDI;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSessionActivationListener;
 import javax.servlet.http.HttpSessionEvent;
-
-import org.javaee7.session.activation.beans.TestBean;
 
 public class MyHttpSessionActivationListener implements
 		HttpSessionActivationListener, Serializable {

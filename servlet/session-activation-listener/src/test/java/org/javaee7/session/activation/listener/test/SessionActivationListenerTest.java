@@ -41,24 +41,26 @@ public class SessionActivationListenerTest {
 
 	}
 
-	private String servletOutput() throws Exception {
+	private HtmlPage getServletReponsePage() throws Exception {
 		WebClient webClient = new WebClient();
 		HtmlPage page = webClient.getPage(url);
 		HtmlPage page2 = page.getElementById("link").click();
-		return page2.asText();
+		return page2;
 	}
 
 	@Test
 	public void testPassivationCalled() throws Exception {
-		String body = servletOutput();
+		// refresh page to initiate passivation event 
+		String body = ((HtmlPage)getServletReponsePage().refresh()).asText();
 		assertTrue("Session context not active during passivation event!", body.contains("ACTIVE BEFORE PASSIVATION true"));
 	}
 	
 	@Test
 	public void testActivationCalled() throws Exception {
-//		String[] lines = getRefreshedServletContentAsLines();
-		//extract number from last but one printed line
-//		int activationCalls = Integer.valueOf(lines[lines.length-2].replaceAll("\\D+",""));
+		// refresh page to initiate activation event 
+		String body = ((HtmlPage)getServletReponsePage().refresh()).asText();
+		assertTrue("Session context not active during passivation event!", body.contains("ACTIVE BEFORE PASSIVATION true"));
+
 	}
 
 }
