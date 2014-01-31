@@ -1,7 +1,5 @@
 package org.javaee7.testbeans;
 
-import java.lang.reflect.Field;
-
 import javax.inject.Inject;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;

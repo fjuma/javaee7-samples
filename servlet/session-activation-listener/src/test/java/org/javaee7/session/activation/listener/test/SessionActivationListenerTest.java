@@ -59,7 +59,7 @@ public class SessionActivationListenerTest {
 	public void testActivationCalled() throws Exception {
 		// refresh page to initiate activation event 
 		String body = ((HtmlPage)getServletReponsePage().refresh()).asText();
-		assertTrue("Session context not active during passivation event!", body.contains("ACTIVE BEFORE PASSIVATION true"));
+		assertTrue("Session context not active during activation event!", body.contains("ACTIVE AFTER ACTIVATION true"));
 
 	}
 
