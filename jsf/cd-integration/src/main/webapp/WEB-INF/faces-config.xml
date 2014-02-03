@@ -23,7 +23,7 @@
 	<application>
 		<navigation-handler>org.jboss.jsf.handlers.CustomNavigationHandler</navigation-handler>
 		<resource-handler>org.jboss.jsf.handlers.CustomResourceHandler</resource-handler>
-		<state-manager>org.jboss.jsf.testbeans.CustomStateManager</state-manager>
+		<state-manager>org.jboss.jsf.handlers.CustomStateManager</state-manager>
 
 		<system-event-listener>
 		<system-event-listener-class>org.jboss.jsf.listeners.CustomSystemEventListener</system-event-listener-class>

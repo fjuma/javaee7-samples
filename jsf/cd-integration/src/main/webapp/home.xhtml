@@ -9,7 +9,7 @@
 </head>
 <body>
 
-	<h:form>
+	<h:form id="form">
 		<h:dataTable value="#{backingBean.injection}" var="class">
 			<h:column>
 				#{class}
@@ -17,7 +17,7 @@
 
 		</h:dataTable>
 		<h:outputText value="#{backingBean.injection.size()}" /><br/>
-		<h:commandButton value="Next" action="#{backingBean.simpleAction()}" />
+		<h:commandButton id="link" value="Next" action="#{backingBean.simpleAction()}" />
 	</h:form>
 
 </body>

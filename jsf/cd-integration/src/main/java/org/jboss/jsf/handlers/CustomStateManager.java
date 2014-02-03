@@ -1,10 +1,13 @@
-package org.jboss.jsf.testbeans;
+package org.jboss.jsf.handlers;
 
 import javax.faces.application.StateManager;
 import javax.faces.application.StateManagerWrapper;
 import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+
+import org.jboss.jsf.testbeans.BackingBean;
+import org.jboss.jsf.testbeans.MyInterceptor;
 
 public class CustomStateManager extends StateManagerWrapper {
 
