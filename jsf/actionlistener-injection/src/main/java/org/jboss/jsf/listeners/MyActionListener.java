@@ -13,6 +13,10 @@ public class MyActionListener implements ActionListener {
 	
 	@Inject
 	BackingBean bean;
+	
+	public MyActionListener(){
+		
+	}
 
 	@Override
 	@MyInterceptor 

@@ -7,9 +7,5 @@
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
 	
-<!-- 	<context-param> -->
-<!-- 		<param-name>javax.faces.CLIENT_WINDOW_MODE</param-name> -->
-<!-- 		<param-value>default</param-value> -->
-<!-- 	</context-param> -->
-	
+	<distributable/>	
 </web-app>

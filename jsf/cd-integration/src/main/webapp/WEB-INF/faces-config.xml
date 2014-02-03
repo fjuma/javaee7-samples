@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+	version="2.2">
+
+	<factory>
+		<faces-context-factory>org.jboss.jsf.factories.CustomFacesContextFactory</faces-context-factory>
+		<exception-handler-factory>org.jboss.jsf.factories.CustomExceptionHandlerFactory</exception-handler-factory>
+		<visit-context-factory>org.jboss.jsf.factories.CustomVisitContextFactory</visit-context-factory>
+		<external-context-factory>org.jboss.jsf.factories.CustomExternalContextFactory</external-context-factory>
+		<application-factory>org.jboss.jsf.factories.CustomApplicationFactory</application-factory>
+		<partial-view-context-factory>org.jboss.jsf.factories.CustomPartialViewContextFactory</partial-view-context-factory>
+		<client-window-factory>org.jboss.jsf.factories.CustomClientWindowFactory</client-window-factory>
+		<lifecycle-factory>org.jboss.jsf.factories.CustomLifeCycleFactory</lifecycle-factory>
+		<render-kit-factory>org.jboss.jsf.factories.CustomRenderKitFactory</render-kit-factory>
+		<view-declaration-language-factory>org.jboss.jsf.factories.CustomViewDeclarationLanguageFactory</view-declaration-language-factory>
+		<facelet-cache-factory>org.jboss.jsf.factories.CustomFaceletCacheFactory</facelet-cache-factory>
+		<flash-factory>org.jboss.jsf.factories.CustomFlashFactory</flash-factory>
+		<flow-handler-factory>org.jboss.jsf.factories.CustomFlowHandlerFactory</flow-handler-factory>
+		<tag-handler-delegate-factory>org.jboss.jsf.factories.CustomTagHandlerDelegateFactory</tag-handler-delegate-factory>
+	</factory>
+	<application>
+		<navigation-handler>org.jboss.jsf.handlers.CustomNavigationHandler</navigation-handler>
+		<resource-handler>org.jboss.jsf.handlers.CustomResourceHandler</resource-handler>
+		<state-manager>org.jboss.jsf.testbeans.CustomStateManager</state-manager>
+
+		<system-event-listener>
+		<system-event-listener-class>org.jboss.jsf.listeners.CustomSystemEventListener</system-event-listener-class>
+		<system-event-class>javax.faces.event.PostConstructApplicationEvent</system-event-class>
+		</system-event-listener>
+
+		<el-resolver>org.jboss.el.resolver.CustomELResolver</el-resolver>
+	</application>
+	<lifecycle>
+	<phase-listener>org.jboss.jsf.listeners.CustomPhaseListener</phase-listener>
+	</lifecycle>
+	
+</faces-config>
