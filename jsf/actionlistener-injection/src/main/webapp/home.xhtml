@@ -12,7 +12,7 @@
 	<h:form id="form">
 		<h:commandButton  id="link" action="#{backingBean.simpleAction()}" value="Action" actionListener="#{actionListenerBean.processAction}" />
 		<h:commandButton  id="link2" value="Action2" >
-			<f:actionListener type="org.jboss.jsf.listeners.MyActionListener"/>
+			<f:actionListener binding="#{myActionListener}"/>
 		</h:commandButton>
 		<h:commandButton  id="link3" value="Action3"/>
 	</h:form>
